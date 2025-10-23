@@ -1,0 +1,38 @@
+# .air.toml — Hot reload configuration for Go project
+
+# Working directory
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  # Binary name
+  bin = "tmp/main"
+
+  # Main entrypoint for the server
+  cmd = "go build -o ./tmp/main ./cmd/server"
+
+  # Watch for changes in these directories
+  include_dir = ["internal", "cmd"]
+  
+  # Watch only these file extensions
+  include_ext = ["go", "tpl", "tmpl", "html"]
+
+  # Exclude directories like tmp or vendor
+  exclude_dir = ["tmp", "vendor"]
+
+  # Delay rebuild by 100ms after file change
+  delay = 100
+
+[log]
+  time = true
+
+[color]
+  main = "yellow"
+  watcher = "cyan"
+  build = "green"
+  runner = "magenta"
+
+[run]
+  cmd = "./tmp/main"
+  # Optional environment variables
+  env = ["GIN_MODE=debug"]
