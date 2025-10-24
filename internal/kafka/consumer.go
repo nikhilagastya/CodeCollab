@@ -37,6 +37,7 @@ func NewConsumer(brokers []string, topic string, group string, hub *websocket.Hu
 // ConsumeMessages listens for messages from Kafka and forwards them to the hub
 func (c *Consumer) ConsumeMessages() {
     for {
+		
         m, err := c.reader.ReadMessage(context.Background())
         if err != nil {
             log.Printf("⚠️ Consumer error: %v", err)
